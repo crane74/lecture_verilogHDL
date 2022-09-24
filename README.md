@@ -1,0 +1,2 @@
+# lecture_verilogHDL
+授業で勉強するverilogHDLのための実行環境
