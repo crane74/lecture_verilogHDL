@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  app:
+    container_name: lecture_verilogHDL
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ./app/:/usr/src/app
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
+
+    ports:
+      - 8080:80
+
+    stdin_open: true
+    tty: true
