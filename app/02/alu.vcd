@@ -1,0 +1,40 @@
+$date
+	Sun Sep 25 01:39:32 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module test $end
+$scope module alu_1 $end
+$var wire 16 ! a [15:0] $end
+$var wire 16 " b [15:0] $end
+$var wire 3 # s [2:0] $end
+$var wire 16 $ y [15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1010101010101010 $
+b0 #
+b10001000100010 "
+b1010101010101010 !
+$end
+#10
+b10001000100010 $
+b1 #
+#20
+b10 #
+#30
+b1100110011001100 $
+b110 #
+#40
+b101010101010100 $
+b100 #
+#50
+b101010101010101 $
+b101 #
+#60
