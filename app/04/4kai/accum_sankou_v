@@ -1,0 +1,42 @@
+`include "def.h"
+module accum(
+input clk, input rst_n,
+input [`OPCODE_W-1:0] opcode,
+input [`ADDR_W-1:0] operand,
+input [`DATA_W-1:0] ddatain,
+output we,
+output [`ADDR_W-1:0] pcout,
+output [`DATA_W-1:0] accout);
+
+reg [`DATA_W-1:0] accum;
+reg [`ADDR_W-1:0] pc;
+wire [`DATA_W-1:0] alu_y;
+wire op_st, op_bez, op_bnz;
+wire [`ADDR_W-1:0] pcnext;
+wire pcsel;
+
+assign op_st = opcode == `OP_ST;
+assign op_bez = opcode == `OP_BEZ;
+assign op_bnz = opcode == `OP_BNZ;
+
+assign we = op_st;
+assign accout = accum;
+assign pcout = pc;
+alu alu_1(.a(accum), .b(ddatain), .s(opcode[`SEL_W-1:0]), .y(alu_y));
+
+assign pcsel = (op_bez & (accum == 0) | op_bnz & (accum != 0));
+assign pcnext = pcsel ? operand : pc+1;
+
+always @(posedge clk or negedge rst_n)
+begin
+   if(!rst_n) pc <= 0;
+   else  pc <= pcnext;
+end
+
+always @(posedge clk or negedge rst_n)
+begin
+    if(!rst_n) accum <= 0;
+    else if(!op_st & !op_bez & !op_bnz ) accum <= alu_y;
+end
+
+endmodule
