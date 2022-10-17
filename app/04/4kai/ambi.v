@@ -22,7 +22,7 @@ assign we = op_st;
 assign accout = accum;
 assign pcout = pc;
 assign com = op_addi ? `ALU_ADD : opcode[`SEL_W-1:0];
-assign alu_b = op_addi ? {{8{operand[7]}},operand} : ddatain; 
+assign alu_b = op_addi ? {{8{operand[7]}},operand} : ddatain;
 alu alu_1(.a(accum), .b(alu_b), .s(com), .y(alu_y));
 
 always @(posedge clk or negedge rst_n)
