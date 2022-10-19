@@ -34,7 +34,7 @@ parameter STEP = 10;
    #(STEP*1/4)
    #STEP
       rst_n <= `DISABLE_N;
-   #(STEP*24)
+   #(STEP*40)
    $finish;
    end
 
